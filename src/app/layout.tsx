@@ -24,7 +24,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-  }
+  },
+  verification: {
+    google: 'my9nuGToQqPddSVEDvUn6N_PYWISWnxL5KRtXGvPrS4',
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
