@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 /**
  * ToolCard — A single tool displayed on the homepage grid.
@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom';
  */
 export default function ToolCard({ to, title, description, icon, color }) {
   return (
-    <Link to={to} className="tool-card group block animate-fade-in" id={`tool-card-${to.replace('/', '')}`}>
+    <Link href={to} className="tool-card group block animate-fade-in" id={`tool-card-${to.replace('/', '')}`}>
       {/* Icon */}
       <div
         className={`w-14 h-14 rounded-xl ${color} flex items-center justify-center mb-4 shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}
