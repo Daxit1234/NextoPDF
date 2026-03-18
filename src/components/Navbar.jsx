@@ -7,13 +7,14 @@ import Link from 'next/link';
  * Uses glassmorphism styling and smooth transitions.
  */
 export default function Navbar() {
-  const [dark, setDark] = useState(() => {
-    // Persist dark mode preference
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem('theme') === 'dark';
+  const [dark, setDark] = useState(false);
+
+  // Initialize theme from localStorage on mount
+  useEffect(() => {
+    if (typeof window !== 'undefined' && localStorage.getItem('theme') === 'dark') {
+      setDark(true);
     }
-    return false;
-  });
+  }, []);
   const [scrolled, setScrolled] = useState(false);
 
   // Toggle dark class on <html> and save preference
