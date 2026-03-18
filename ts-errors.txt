@@ -1,0 +1,1 @@
+src/app/image-to-pdf/ImageToPdfClient.tsx(62,9): error TS2322: Type '{ 'image/png': string[]; 'image/jpeg': string[]; }' is not assignable to type 'string'.
