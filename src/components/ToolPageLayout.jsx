@@ -7,7 +7,7 @@ import Link from 'next/link';
  */
 export default function ToolPageLayout({ title, description, icon = null, color, children }) {
   return (
-    <div className="min-h-screen pt-24 pb-16 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen pt-6 pb-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto">
         {/* Back link */}
         <Link
