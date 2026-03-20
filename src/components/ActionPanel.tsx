@@ -1,18 +1,21 @@
+'use client';
+
 import React from 'react';
 
+interface ActionPanelProps {
+  onProcess: () => void;
+  onDownload?: () => void;
+  onReset: () => void;
+  processing?: boolean;
+  progress?: number;
+  hasResult?: boolean;
+  canProcess?: boolean;
+  processLabel?: string;
+  downloadLabel?: string;
+}
+
 /**
- * ActionPanel — Displays the process button, progress bar, download/reset controls.
- *
- * @param {Object} props
- * @param {function} props.onProcess - Called when the user clicks the process button.
- * @param {function} [props.onDownload] - Called to download the result.
- * @param {function} props.onReset - Called to clear files and reset state.
- * @param {boolean} props.processing - True while the operation is in progress.
- * @param {number} props.progress - Progress percentage (0–100).
- * @param {boolean} props.hasResult - True when a result is ready for download.
- * @param {boolean} props.canProcess - True when enough input is provided.
- * @param {string} [props.processLabel] - Label for the process button.
- * @param {string} [props.downloadLabel] - Label for the download button.
+ * ActionPanel — Process button, progress bar, download/reset controls.
  */
 export default function ActionPanel({
   onProcess,
@@ -24,10 +27,10 @@ export default function ActionPanel({
   canProcess = false,
   processLabel = 'Process',
   downloadLabel = 'Download',
-}) {
+}: ActionPanelProps) {
   return (
     <div className="space-y-4">
-      {/* Progress Bar (visible during processing) */}
+      {/* Progress Bar */}
       {processing && (
         <div className="space-y-2 animate-fade-in">
           <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400">

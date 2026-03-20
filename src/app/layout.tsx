@@ -6,7 +6,6 @@ import { Toaster } from 'react-hot-toast';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
-// Use original global css or tailwind setup
 import '../index.css';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -14,14 +13,14 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   metadataBase: new URL('https://nexto-pdf.vercel.app'),
   title: {
-    default: 'NextoPDF - Free Online PDF Tools',
-    template: '%s | NextoPDF'
+    default: 'NextoPDF Pro - Free Online PDF Tools',
+    template: '%s | NextoPDF Pro'
   },
   description: 'Merge, split, compress, and convert PDF files easily and securely. 100% free online PDF tools.',
   openGraph: {
     type: 'website',
     url: 'https://nexto-pdf.vercel.app',
-    siteName: 'NextoPDF'
+    siteName: 'NextoPDF Pro'
   },
   twitter: {
     card: 'summary_large_image',

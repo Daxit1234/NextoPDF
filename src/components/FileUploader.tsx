@@ -1,26 +1,33 @@
+'use client';
+
 import React, { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { formatFileSize } from '../utils/helpers';
 
+interface FileUploaderProps {
+  onFilesSelected: (files: File[]) => void;
+  onRemoveFile?: (index: number) => void;
+  accept?: Record<string, string[]>;
+  multiple?: boolean;
+  maxFiles?: number;
+  files?: File[];
+  label?: string;
+}
+
 /**
- * FileUploader — Drag-and-drop file upload area using react-dropzone.
- *
- * @param {Object} props
- * @param {function} props.onFilesSelected - Callback with array of File objects.
- * @param {string} [props.accept] - MIME types to accept (e.g. "application/pdf").
- * @param {boolean} [props.multiple] - Allow selecting multiple files.
- * @param {File[]} [props.files] - Currently selected files (for display).
- * @param {string} [props.label] - Upload zone label text.
+ * FileUploader — Drag-and-drop file upload with file list display and removal.
  */
 export default function FileUploader({
   onFilesSelected,
+  onRemoveFile,
   accept = { 'application/pdf': ['.pdf'] },
   multiple = false,
+  maxFiles,
   files = [],
   label = 'Drag & drop your PDF here, or click to browse',
-}) {
+}: FileUploaderProps) {
   const onDrop = useCallback(
-    (acceptedFiles) => {
+    (acceptedFiles: File[]) => {
       if (acceptedFiles.length > 0) {
         onFilesSelected(acceptedFiles);
       }
@@ -32,6 +39,7 @@ export default function FileUploader({
     onDrop,
     accept,
     multiple,
+    maxFiles,
   });
 
   return (
@@ -84,6 +92,18 @@ export default function FileUploader({
                 <p className="text-sm font-medium text-gray-800 dark:text-gray-200 truncate">{file.name}</p>
                 <p className="text-xs text-gray-400">{formatFileSize(file.size)}</p>
               </div>
+              {/* Remove button */}
+              {onRemoveFile && (
+                <button
+                  onClick={() => onRemoveFile(idx)}
+                  className="w-8 h-8 rounded-lg flex items-center justify-center text-gray-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 transition-all"
+                  aria-label="Remove file"
+                >
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              )}
             </div>
           ))}
         </div>

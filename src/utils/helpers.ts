@@ -1,13 +1,11 @@
 /**
- * helpers.js — Shared utility functions used across the app.
+ * helpers.ts — Shared utility functions used across the app.
  */
 
 /**
  * Formats a file size in bytes into a human-readable string.
- * @param {number} bytes - The file size in bytes.
- * @returns {string} Formatted file size (e.g. "1.23 MB").
  */
-export function formatFileSize(bytes) {
+export function formatFileSize(bytes: number): string {
   if (bytes === 0) return '0 Bytes';
   const k = 1024;
   const sizes = ['Bytes', 'KB', 'MB', 'GB'];
@@ -17,12 +15,9 @@ export function formatFileSize(bytes) {
 
 /**
  * Parses a page-range string like "1-3,5,7-9" into an array of 0-indexed page numbers.
- * @param {string} rangeStr - Comma-separated page ranges (1-indexed).
- * @param {number} totalPages - Total pages in the document.
- * @returns {number[]} Array of 0-indexed page numbers.
  */
-export function parsePageRanges(rangeStr, totalPages) {
-  const pages = new Set();
+export function parsePageRanges(rangeStr: string, totalPages: number): number[] {
+  const pages = new Set<number>();
   const parts = rangeStr.split(',').map((s) => s.trim()).filter(Boolean);
 
   for (const part of parts) {
@@ -31,7 +26,7 @@ export function parsePageRanges(rangeStr, totalPages) {
       const start = Math.max(1, parseInt(startStr, 10));
       const end = Math.min(totalPages, parseInt(endStr, 10));
       if (!isNaN(start) && !isNaN(end)) {
-        for (let i = start; i <= end; i++) pages.add(i - 1); // 0-indexed
+        for (let i = start; i <= end; i++) pages.add(i - 1);
       }
     } else {
       const p = parseInt(part, 10);
@@ -43,10 +38,8 @@ export function parsePageRanges(rangeStr, totalPages) {
 
 /**
  * Triggers a file download in the browser.
- * @param {Uint8Array|Blob} data
- * @param {string} filename
  */
-export function downloadFile(data, filename) {
+export function downloadFile(data: Uint8Array | Blob, filename: string): void {
   const blob = data instanceof Blob ? data : new Blob([data]);
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
@@ -60,13 +53,12 @@ export function downloadFile(data, filename) {
  * Returns a friendly name from a file object.
  * Strips the extension and truncates long names.
  */
-export function friendlyName(file, maxLen = 30) {
+export function friendlyName(file: File, maxLen = 30): string {
   const name = file.name.replace(/\.[^/.]+$/, '');
   return name.length > maxLen ? name.slice(0, maxLen) + '…' : name;
 }
 
 /**
  * Creates a delay (for simulated progress, etc.).
- * @param {number} ms
  */
-export const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+export const sleep = (ms: number): Promise<void> => new Promise((r) => setTimeout(r, ms));
