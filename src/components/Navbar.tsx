@@ -60,6 +60,7 @@ export default function Navbar() {
     { name: 'Convert', href: '/pdf-to-image' },
     { name: 'Edit', href: '/edit-pdf' },
     { name: 'Sign', href: '/sign-pdf' },
+    { name: 'Blog', href: '/blog' },
   ];
 
   return (

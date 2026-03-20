@@ -10,6 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tailwindcss/typography": "^0.5.19",
     "@types/node": "^25.5.0",
     "eslint": "^9.39.4",
     "eslint-config-next": "^16.1.7",
@@ -22,6 +23,7 @@
     "react-dom": "^19.2.4",
     "react-dropzone": "^14.3.5",
     "react-hot-toast": "^2.4.1",
+    "react-markdown": "^10.1.0",
     "typescript": "^5.9.3"
   },
   "devDependencies": {
