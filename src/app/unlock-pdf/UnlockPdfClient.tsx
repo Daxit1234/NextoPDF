@@ -23,7 +23,7 @@ export default function UnlockPdfClient() {
       const { PDFDocument } = await getPdfLib();
       const buf = await files[0].arrayBuffer();
       setProgress(30);
-      const pdfDoc = await PDFDocument.load(buf, { password: password || undefined, ignoreEncryption: true });
+      const pdfDoc = await PDFDocument.load(buf, { password: password || undefined, ignoreEncryption: true } as any);
       setProgress(60);
       const newPdf = await PDFDocument.create();
       const pages = await newPdf.copyPages(pdfDoc, pdfDoc.getPageIndices());
@@ -37,7 +37,7 @@ export default function UnlockPdfClient() {
   }, [files, password, setProcessing, setProgress, setResult]);
 
   const handleDownload = useCallback(() => {
-    if (result) { saveAs(new Blob([result], { type: 'application/pdf' }), 'unlocked.pdf'); }
+    if (result) { saveAs(new Blob([result as any], { type: 'application/pdf' }), 'unlocked.pdf'); }
   }, [result]);
 
   return (

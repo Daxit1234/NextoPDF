@@ -39,7 +39,7 @@ export default function PdfToWordClient() {
   }, [files, setProcessing, setProgress, setResult]);
 
   const handleDownload = useCallback(() => {
-    if (result) { saveAs(new Blob([result], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' }), 'document.doc'); }
+    if (result) { saveAs(new Blob([result as any], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' }), 'document.doc'); }
   }, [result]);
 
   return (

@@ -55,7 +55,7 @@ export default function RotatePdfClient() {
   }, [files, selectedPages, angle, setProcessing, setProgress, setResult]);
 
   const handleDownload = useCallback(() => {
-    if (result) { saveAs(new Blob([result], { type: 'application/pdf' }), 'rotated.pdf'); }
+    if (result) { saveAs(new Blob([result as any], { type: 'application/pdf' }), 'rotated.pdf'); }
   }, [result]);
 
   const handleReset = useCallback(() => { reset(); setPageCount(0); setSelectedPages([]); }, [reset]);

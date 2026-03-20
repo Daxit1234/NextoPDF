@@ -34,7 +34,7 @@ export default function PdfToPptClient() {
   }, [files, setProcessing, setProgress, setResult]);
 
   const handleDownload = useCallback(() => {
-    if (result) { saveAs(new Blob([result], { type: 'application/zip' }), 'slides.zip'); }
+    if (result) { saveAs(new Blob([result as any], { type: 'application/zip' }), 'slides.zip'); }
   }, [result]);
 
   return (

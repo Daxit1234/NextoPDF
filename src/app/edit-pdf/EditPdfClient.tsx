@@ -38,7 +38,7 @@ export default function EditPdfClient() {
   }, [files, text, x, y, fontSize, setProcessing, setProgress, setResult]);
 
   const handleDownload = useCallback(() => {
-    if (result) { saveAs(new Blob([result], { type: 'application/pdf' }), 'edited.pdf'); }
+    if (result) { saveAs(new Blob([result as any], { type: 'application/pdf' }), 'edited.pdf'); }
   }, [result]);
 
   return (

@@ -44,7 +44,7 @@ export default function TranslatePdfClient() {
   }, [files, targetLang, setProcessing, setProgress, setResult]);
 
   const handleDownload = useCallback(() => {
-    if (result) { saveAs(new Blob([result], { type: 'application/pdf' }), `translated-${targetLang.toLowerCase()}.pdf`); }
+    if (result) { saveAs(new Blob([result as any], { type: 'application/pdf' }), `translated-${targetLang.toLowerCase()}.pdf`); }
   }, [result, targetLang]);
 
   return (

@@ -50,7 +50,7 @@ export default function SplitPdfClient() {
   }, [files, rangeInput, setProcessing, setProgress, setResult]);
 
   const handleDownload = useCallback(() => {
-    if (result) { saveAs(new Blob([result], { type: 'application/pdf' }), 'split.pdf'); }
+    if (result) { saveAs(new Blob([result as any], { type: 'application/pdf' }), 'split.pdf'); }
   }, [result]);
 
   const handleReset = useCallback(() => { reset(); setPageCount(0); setRangeInput(''); }, [reset]);

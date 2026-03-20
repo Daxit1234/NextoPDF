@@ -70,7 +70,7 @@ export default function SignPdfClient() {
   }, [files, hasSignature, setProcessing, setProgress, setResult]);
 
   const handleDownload = useCallback(() => {
-    if (result) { saveAs(new Blob([result], { type: 'application/pdf' }), 'signed.pdf'); }
+    if (result) { saveAs(new Blob([result as any], { type: 'application/pdf' }), 'signed.pdf'); }
   }, [result]);
 
   return (

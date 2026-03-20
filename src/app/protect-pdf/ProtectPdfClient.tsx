@@ -39,7 +39,7 @@ export default function ProtectPdfClient() {
   }, [files, password, setProcessing, setProgress, setResult]);
 
   const handleDownload = useCallback(() => {
-    if (result) { saveAs(new Blob([result], { type: 'application/pdf' }), 'protected.pdf'); }
+    if (result) { saveAs(new Blob([result as any], { type: 'application/pdf' }), 'protected.pdf'); }
   }, [result]);
 
   return (

@@ -50,7 +50,7 @@ export default function WatermarkPdfClient() {
   }, [files, watermarkText, fontSize, opacity, setProcessing, setProgress, setResult]);
 
   const handleDownload = useCallback(() => {
-    if (result) { saveAs(new Blob([result], { type: 'application/pdf' }), 'watermarked.pdf'); }
+    if (result) { saveAs(new Blob([result as any], { type: 'application/pdf' }), 'watermarked.pdf'); }
   }, [result]);
 
   return (

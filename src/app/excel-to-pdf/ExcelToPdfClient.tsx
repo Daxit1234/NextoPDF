@@ -37,7 +37,7 @@ export default function ExcelToPdfClient() {
   }, [files, setProcessing, setProgress, setResult]);
 
   const handleDownload = useCallback(() => {
-    if (result) { saveAs(new Blob([result], { type: 'application/pdf' }), 'spreadsheet.pdf'); }
+    if (result) { saveAs(new Blob([result as any], { type: 'application/pdf' }), 'spreadsheet.pdf'); }
   }, [result]);
 
   return (

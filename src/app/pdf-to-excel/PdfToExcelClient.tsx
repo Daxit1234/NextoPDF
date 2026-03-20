@@ -35,7 +35,7 @@ export default function PdfToExcelClient() {
   }, [files, setProcessing, setProgress, setResult]);
 
   const handleDownload = useCallback(() => {
-    if (result) { saveAs(new Blob([result], { type: 'text/csv' }), 'data.csv'); }
+    if (result) { saveAs(new Blob([result as any], { type: 'text/csv' }), 'data.csv'); }
   }, [result]);
 
   return (

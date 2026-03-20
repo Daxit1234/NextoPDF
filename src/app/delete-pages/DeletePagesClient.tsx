@@ -54,7 +54,7 @@ export default function DeletePagesClient() {
   }, [files, selectedPages, pageCount, setProcessing, setProgress, setResult]);
 
   const handleDownload = useCallback(() => {
-    if (result) { saveAs(new Blob([result], { type: 'application/pdf' }), 'modified.pdf'); }
+    if (result) { saveAs(new Blob([result as any], { type: 'application/pdf' }), 'modified.pdf'); }
   }, [result]);
 
   const handleReset = useCallback(() => { reset(); setPageCount(0); setSelectedPages([]); }, [reset]);

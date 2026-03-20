@@ -49,7 +49,7 @@ export default function ExtractPagesClient() {
   }, [files, selectedPages, setProcessing, setProgress, setResult]);
 
   const handleDownload = useCallback(() => {
-    if (result) { saveAs(new Blob([result], { type: 'application/pdf' }), 'extracted.pdf'); }
+    if (result) { saveAs(new Blob([result as any], { type: 'application/pdf' }), 'extracted.pdf'); }
   }, [result]);
 
   const handleReset = useCallback(() => { reset(); setPageCount(0); setSelectedPages([]); }, [reset]);
