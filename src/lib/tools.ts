@@ -650,6 +650,16 @@ export const toolsByCategory = toolsConfig.reduce((acc, tool) => {
   return acc;
 }, {} as Record<ToolCategory, PDFTool[]>);
 
+export const implementedToolsConfig = toolsConfig.filter((tool) => tool.implemented);
+
+export const implementedToolsByCategory = implementedToolsConfig.reduce((acc, tool) => {
+  if (!acc[tool.category]) {
+    acc[tool.category] = [];
+  }
+  acc[tool.category].push(tool);
+  return acc;
+}, {} as Record<ToolCategory, PDFTool[]>);
+
 /** Lookup a tool by its slug */
 export function getToolBySlug(slug: string): PDFTool | undefined {
   return toolsConfig.find((t) => t.slug === slug);

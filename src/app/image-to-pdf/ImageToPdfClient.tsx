@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { saveAs } from 'file-saver';
 import useToolState from '../../hooks/useToolState';
@@ -11,6 +11,16 @@ import { imageToPdf } from '../../tools/imageToPdf';
 
 export default function ImageToPdfClient() {
   const { files, addFiles, removeFile, processing, setProcessing, progress, setProgress, result, setResult, reset } = useToolState();
+  const [previews, setPreviews] = useState<string[]>([]);
+
+  useEffect(() => {
+    const nextPreviews = files.map((file) => URL.createObjectURL(file));
+    setPreviews(nextPreviews);
+
+    return () => {
+      nextPreviews.forEach((preview) => URL.revokeObjectURL(preview));
+    };
+  }, [files]);
 
   const handleProcess = useCallback(async () => {
     if (files.length === 0) { toast.error('Please add at least one image.'); return; }
@@ -33,7 +43,7 @@ export default function ImageToPdfClient() {
         <div className="grid grid-cols-3 sm:grid-cols-4 gap-3">
           {files.map((file, idx) => (
             <div key={idx} className="relative rounded-lg overflow-hidden border border-gray-200 dark:border-white/10 aspect-square bg-gray-100 dark:bg-white/5">
-              <img src={URL.createObjectURL(file)} alt={file.name} className="w-full h-full object-cover" />
+              <img src={previews[idx]} alt={file.name} className="w-full h-full object-cover" />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 p-1.5"><span className="text-xs text-white truncate block">{file.name}</span></div>
             </div>
           ))}

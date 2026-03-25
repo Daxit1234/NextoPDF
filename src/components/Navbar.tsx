@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { toolsByCategory } from '../lib/tools';
+import { implementedToolsByCategory } from '../lib/tools';
 
 /**
  * Navbar — Top navigation with logo, tools mega-dropdown, nav links, and dark-mode toggle.
@@ -106,7 +106,7 @@ export default function Navbar() {
                 {isToolsOpen && (
                   <div className="absolute top-full left-0 mt-2 w-[850px] max-w-[90vw] bg-white dark:bg-surface-900 rounded-xl shadow-2xl border border-gray-100 dark:border-white/10 p-6 z-50 text-sm">
                     <div className="grid grid-cols-4 gap-x-8 gap-y-6">
-                      {Object.entries(toolsByCategory).map(([category, tools]) => (
+                      {Object.entries(implementedToolsByCategory).map(([category, tools]) => (
                         <div key={category} className="space-y-3">
                           <h3 className="font-semibold text-gray-900 dark:text-white text-[13px] uppercase tracking-wide">{category}</h3>
                           <ul className="space-y-1">
@@ -195,13 +195,6 @@ export default function Navbar() {
               </svg>
             </button>
 
-            {/* Login */}
-            <Link
-              href="/login"
-              className="hidden sm:inline-flex font-medium text-[15px] text-gray-700 dark:text-gray-200 hover:text-primary-600 dark:hover:text-primary-400 transition-colors px-3 py-2"
-            >
-              Log In
-            </Link>
           </div>
         </div>
       </div>
@@ -227,7 +220,7 @@ export default function Navbar() {
           })}
           <div className="border-t border-gray-100 dark:border-white/10 pt-2 mt-2">
             <p className="px-4 py-1.5 text-xs font-semibold text-gray-400 uppercase tracking-wider">All Tools</p>
-            {Object.entries(toolsByCategory).map(([category, tools]) => (
+            {Object.entries(implementedToolsByCategory).map(([category, tools]) => (
               <div key={category} className="mb-2">
                 <p className="px-4 py-1 text-xs font-semibold text-gray-500 dark:text-gray-400">{category}</p>
                 {tools.map((tool) => (

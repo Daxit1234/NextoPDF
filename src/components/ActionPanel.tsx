@@ -29,7 +29,7 @@ export default function ActionPanel({
   downloadLabel = 'Download',
 }: ActionPanelProps) {
   return (
-    <div className="space-y-4">
+    <div className="mt-6 space-y-4">
       {/* Progress Bar */}
       {processing && (
         <div className="space-y-2 animate-fade-in">
